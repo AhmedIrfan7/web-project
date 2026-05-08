@@ -1,6 +1,6 @@
 # UrbanFix - Geospatial Civic Issue Tracking System
 
-**FAST NUCES - Web Programming Project (Spring 2024)**
+**FAST NUCES - Web Programming Project**
 
 Group Members:
 - Ahmed Irfan - 23i-0020
