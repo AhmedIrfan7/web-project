@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { MapPin, AlertCircle, CheckCircle, Clock, ArrowRight, Zap, Shield, BarChart3 } from "lucide-react";
 
@@ -33,12 +34,6 @@ const FEATURES = [
   },
 ];
 
-const STATS = [
-  { label: "Issues Reported", value: "2,400+", icon: AlertCircle },
-  { label: "Issues Resolved", value: "1,900+", icon: CheckCircle },
-  { label: "Cities Covered", value: "12", icon: MapPin },
-  { label: "Active Users", value: "8,500+", icon: Clock },
-];
 
 const HOW_IT_WORKS = [
   { step: "01", title: "Sign Up", desc: "Create your free account in under a minute." },
@@ -48,6 +43,22 @@ const HOW_IT_WORKS = [
 ];
 
 export default function HomePage() {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/admin/stats")
+      .then((r) => r.json())
+      .then((d) => { if (d.stats) setStats(d.stats); })
+      .catch(() => {});
+  }, []);
+
+  const STATS = [
+    { label: "Issues Reported", value: stats ? stats.totalIssues.toLocaleString() : "...", icon: AlertCircle },
+    { label: "Issues Resolved", value: stats ? stats.resolvedIssues.toLocaleString() : "...", icon: CheckCircle },
+    { label: "Active Users", value: stats ? stats.activeUsers.toLocaleString() : "...", icon: Clock },
+    { label: "Total Users", value: stats ? stats.totalUsers.toLocaleString() : "...", icon: MapPin },
+  ];
+
   return (
     <div>
       <section className="hero-gradient text-white">

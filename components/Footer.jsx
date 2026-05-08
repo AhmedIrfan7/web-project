@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
-          <p>2024 UrbanFix. Built by Ahmed Irfan (23i-0020) and Muhammad Bilal (23i-0595).</p>
+          <p>2026 UrbanFix. Built by Ahmed Irfan (23i-0020) and Muhammad Bilal (23i-0595).</p>
           <p>FAST NUCES - Web Programming Project</p>
         </div>
       </div>
