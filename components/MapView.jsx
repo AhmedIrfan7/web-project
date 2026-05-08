@@ -22,7 +22,6 @@ export default function MapView({ issues = [], height = "500px" }) {
     const initMap = async () => {
       try {
         const L = (await import("leaflet")).default;
-        await import("leaflet/dist/leaflet.css");
 
         const map = L.map(mapRef.current).setView([30.3753, 69.3451], 6);
         leafletMap.current = map;

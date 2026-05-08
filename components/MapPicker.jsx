@@ -16,7 +16,6 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
     const initMap = async () => {
       try {
         const L = (await import("leaflet")).default;
-        await import("leaflet/dist/leaflet.css");
 
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
