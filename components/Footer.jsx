@@ -31,11 +31,11 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-blue-400 shrink-0" />
-                <span>ahmedirfancodes@gmail.com</span>
+                <a href="mailto:ahmedirfancodes@gmail.com" className="hover:text-white transition-colors">ahmedirfancodes@gmail.com</a>
               </div>
               <div className="flex items-center gap-2">
                 <Github size={14} className="text-blue-400 shrink-0" />
-                <span>github.com/AhmedIrfan7/web-project</span>
+                <a href="https://github.com/AhmedIrfan7/web-project" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">github.com/AhmedIrfan7/web-project</a>
               </div>
             </div>
           </div>

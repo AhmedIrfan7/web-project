@@ -2,15 +2,9 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Issue from "@/models/Issue";
 import User from "@/models/User";
-import { verifyToken } from "@/lib/jwt";
 
 export async function GET(request) {
   try {
-    const token = request.cookies.get("token")?.value;
-    const user = token ? await verifyToken(token) : null;
-    if (!user || user.role !== "admin") {
-      return NextResponse.json({ message: "Forbidden" }, { status: 403 });
-    }
 
     await connectDB();
 
