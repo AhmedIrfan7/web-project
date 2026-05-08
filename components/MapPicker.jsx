@@ -10,12 +10,17 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (leafletMap.current) return;
+    if (typeof window === "undefined" || !mapRef.current) return;
+
+    let map = null;
 
     const initMap = async () => {
       try {
         const L = (await import("leaflet")).default;
+
+        if (mapRef.current._leaflet_id) {
+          delete mapRef.current._leaflet_id;
+        }
 
         delete L.Icon.Default.prototype._getIconUrl;
         L.Icon.Default.mergeOptions({
@@ -27,7 +32,7 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
         const lat = initialLat || 33.6844;
         const lng = initialLng || 73.0479;
 
-        const map = L.map(mapRef.current).setView([lat, lng], 13);
+        map = L.map(mapRef.current).setView([lat, lng], 13);
         leafletMap.current = map;
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -39,9 +44,9 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
           const marker = L.marker([initialLat, initialLng], { draggable: true }).addTo(map);
           markerRef.current = marker;
           marker.on("dragend", async () => {
-            const { lat, lng } = marker.getLatLng();
-            const address = await reverseGeocode(lat, lng);
-            onLocationSelect({ lat, lng, address });
+            const pos = marker.getLatLng();
+            const address = await reverseGeocode(pos.lat, pos.lng);
+            onLocationSelect({ lat: pos.lat, lng: pos.lng, address });
           });
         }
 
@@ -53,9 +58,9 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
             const marker = L.marker([lat, lng], { draggable: true }).addTo(map);
             markerRef.current = marker;
             marker.on("dragend", async () => {
-              const { lat: mLat, lng: mLng } = marker.getLatLng();
-              const address = await reverseGeocode(mLat, mLng);
-              onLocationSelect({ lat: mLat, lng: mLng, address });
+              const pos = marker.getLatLng();
+              const address = await reverseGeocode(pos.lat, pos.lng);
+              onLocationSelect({ lat: pos.lat, lng: pos.lng, address });
             });
           }
           const address = await reverseGeocode(lat, lng);
@@ -64,6 +69,7 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
 
         setLoading(false);
       } catch (err) {
+        console.error("Map init error:", err);
         setError("Failed to load map. Please refresh.");
         setLoading(false);
       }
@@ -72,11 +78,12 @@ export default function MapPicker({ onLocationSelect, initialLat, initialLng }) 
     initMap();
 
     return () => {
-      if (leafletMap.current) {
-        leafletMap.current.remove();
-        leafletMap.current = null;
-        markerRef.current = null;
+      if (map) {
+        map.remove();
+        map = null;
       }
+      leafletMap.current = null;
+      markerRef.current = null;
     };
   }, []);
 

@@ -16,14 +16,19 @@ export default function MapView({ issues = [], height = "500px" }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (leafletMap.current) return;
+    if (typeof window === "undefined" || !mapRef.current) return;
+
+    let map = null;
 
     const initMap = async () => {
       try {
         const L = (await import("leaflet")).default;
 
-        const map = L.map(mapRef.current).setView([30.3753, 69.3451], 6);
+        if (mapRef.current._leaflet_id) {
+          delete mapRef.current._leaflet_id;
+        }
+
+        map = L.map(mapRef.current).setView([30.3753, 69.3451], 6);
         leafletMap.current = map;
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -32,7 +37,8 @@ export default function MapView({ issues = [], height = "500px" }) {
         }).addTo(map);
 
         setLoading(false);
-      } catch {
+      } catch (err) {
+        console.error("MapView init error:", err);
         setError("Failed to load map.");
         setLoading(false);
       }
@@ -41,10 +47,11 @@ export default function MapView({ issues = [], height = "500px" }) {
     initMap();
 
     return () => {
-      if (leafletMap.current) {
-        leafletMap.current.remove();
-        leafletMap.current = null;
+      if (map) {
+        map.remove();
+        map = null;
       }
+      leafletMap.current = null;
     };
   }, []);
 
