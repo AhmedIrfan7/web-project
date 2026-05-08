@@ -32,7 +32,7 @@ export default function LoginPage() {
     try {
       const user = await login(form.email.trim(), form.password);
       toast.success(`Welcome back, ${user.name}!`);
-      router.push(user.role === "admin" ? "/admin" : "/dashboard");
+      window.location.href = user.role === "admin" ? "/admin" : "/dashboard";
     } catch (err) {
       toast.error(err.message || "Login failed");
     } finally {

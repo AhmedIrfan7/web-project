@@ -54,7 +54,7 @@ export default function SignupPage() {
     try {
       const user = await register(form.name.trim(), form.email.trim(), pw);
       toast.success("Account created! Welcome to UrbanFix.");
-      router.push("/dashboard");
+      window.location.href = "/dashboard";
     } catch (err) {
       toast.error(err.message || "Registration failed");
     } finally {
