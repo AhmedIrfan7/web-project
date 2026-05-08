@@ -31,7 +31,7 @@ export default function Footer() {
             <div className="space-y-2 text-sm">
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-blue-400 shrink-0" />
-                <span>support@urbanfix.gov</span>
+                <span>ahmedirfancodes@gmail.com</span>
               </div>
               <div className="flex items-center gap-2">
                 <Github size={14} className="text-blue-400 shrink-0" />

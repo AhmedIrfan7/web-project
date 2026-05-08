@@ -89,7 +89,7 @@ export default function SignupPage() {
           </div>
 
           <form onSubmit={handleSubmit} noValidate className="space-y-4">
-            {textField("name", "Full name", "text", "Ahmed Irfan")}
+            {textField("name", "Full name", "text", "Your Name")}
             {textField("email", "Email address", "email", "you@example.com")}
 
             <div>
