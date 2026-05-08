@@ -13,7 +13,7 @@ const IssueSchema = new Schema(
       type: String,
       required: [true, "Description is required"],
       trim: true,
-      minlength: [20, "Description must be at least 20 characters"],
+      minlength: [10, "Description must be at least 10 characters"],
       maxlength: [1000, "Description must be under 1000 characters"],
     },
     category: {
