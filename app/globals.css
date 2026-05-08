@@ -44,29 +44,9 @@ body {
   border-radius: var(--radius-card);
 }
 
-.leaflet-container img,
-.leaflet-tile,
-.leaflet-marker-icon,
-.leaflet-marker-shadow {
+.leaflet-container img {
   max-width: none !important;
-  max-height: none !important;
-  width: auto;
   display: inline;
-}
-
-.leaflet-pane,
-.leaflet-tile,
-.leaflet-marker-icon,
-.leaflet-marker-shadow,
-.leaflet-tile-container,
-.leaflet-pane > svg,
-.leaflet-pane > canvas,
-.leaflet-zoom-box,
-.leaflet-image-layer,
-.leaflet-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
 }
 
 ::-webkit-scrollbar {

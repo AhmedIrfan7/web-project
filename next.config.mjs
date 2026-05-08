@@ -4,6 +4,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   outputFileTracingRoot: process.cwd(),
+  reactStrictMode: false,
 };
 
 export default nextConfig;
