@@ -75,8 +75,8 @@ export default function Navbar() {
               </div>
             ) : (
               <>
-                <Link href="/login" className="btn btn-ghost text-sm">Sign in</Link>
-                <Link href="/signup" className="btn btn-primary text-sm">Get Started</Link>
+                <a href="/login" className="btn btn-ghost text-sm">Sign in</a>
+                <a href="/signup" className="btn btn-primary text-sm">Get Started</a>
               </>
             )}
           </div>
@@ -119,8 +119,8 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex gap-2 pt-2 border-t border-slate-100 mt-2">
-              <Link href="/login" onClick={() => setMenuOpen(false)} className="btn btn-ghost flex-1 text-sm">Sign in</Link>
-              <Link href="/signup" onClick={() => setMenuOpen(false)} className="btn btn-primary flex-1 text-sm">Get Started</Link>
+              <a href="/login" onClick={() => setMenuOpen(false)} className="btn btn-ghost flex-1 text-sm">Sign in</a>
+              <a href="/signup" onClick={() => setMenuOpen(false)} className="btn btn-primary flex-1 text-sm">Get Started</a>
             </div>
           )}
         </div>

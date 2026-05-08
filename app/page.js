@@ -77,12 +77,12 @@ export default function HomePage() {
               UrbanFix connects citizens to local authorities through a real-time geospatial platform. Pin it, report it, watch it get fixed.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/signup" className="btn btn-primary px-6 py-3 text-base font-semibold">
+              <a href="/signup" className="btn btn-primary px-6 py-3 text-base font-semibold">
                 Get Started Free <ArrowRight size={18} />
-              </Link>
-              <Link href="/login" className="btn glass-card px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors">
+              </a>
+              <a href="/login" className="btn glass-card px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-colors">
                 Sign In
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -151,12 +151,12 @@ export default function HomePage() {
           Join thousands of citizens who are already reporting and tracking civic issues in their communities.
         </p>
         <div className="flex flex-wrap justify-center gap-4">
-          <Link href="/signup" className="btn btn-primary px-8 py-3 text-base font-semibold">
+          <a href="/signup" className="btn btn-primary px-8 py-3 text-base font-semibold">
             Create Free Account <ArrowRight size={18} />
-          </Link>
-          <Link href="/login" className="btn btn-ghost px-8 py-3 text-base font-semibold">
+          </a>
+          <a href="/login" className="btn btn-ghost px-8 py-3 text-base font-semibold">
             Sign In
-          </Link>
+          </a>
         </div>
       </section>
     </div>
